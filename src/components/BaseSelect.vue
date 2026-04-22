@@ -14,8 +14,8 @@
                 @change="$emit('valueChanged', selectValue)">
             <option :class="`${propsClass}__placeholder`"
                     v-if="propsPlaceholder"
-                    disabled
-                    selected>
+                    disabled="true"
+                    value="">
                 {{ propsPlaceholder }}
             </option>
             <option v-for="(option, index) in propsOptions"
@@ -38,11 +38,7 @@ export default defineComponent({
     props: {
         propsClass: {
             type: String,
-            default: ''
-        },
-        propsText: {
-            type: String,
-            default: ''
+            default: 'select'
         },
         propsLabel: {
             type: String
@@ -65,7 +61,7 @@ export default defineComponent({
         }
     },
     setup(props) {
-        const selectValue = ref(props.propsValue || props.propsOptions[0]);
+        const selectValue = ref(props.propsValue || '');
 
         return {
             selectValue

@@ -35,6 +35,6 @@ import BaseSelect from './components/BaseSelect.vue';
 <BaseSelect :propsClass="'select'"
             :propsLabel="'label'"
             :propsOptions="['1', '2']"
-            :propsText="'Выберите цифру'"
+            :propsPlaceholder="'Выберите значение'"
             @valueChanged="(value: [string, number]) => console.log(value)" />
 </template>
