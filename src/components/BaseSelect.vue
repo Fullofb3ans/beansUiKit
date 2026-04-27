@@ -11,7 +11,7 @@
         <select :class="`${propsClass}`"
                 :id="propsClass"
                 v-model="selectValue"
-                @change="$emit('valueChanged', selectValue)">
+                @change="valueChanged">
             <option :class="`${propsClass}__placeholder`"
                     v-if="propsPlaceholder"
                     disabled="true"
@@ -64,11 +64,16 @@ export default defineComponent({
             default: []
         }
     },
-    setup(props) {
+    setup(props, { emit }) {
         const selectValue = ref(props.propsValue || '');
 
+        const valueChanged = () => {
+            emit('valueChanged', selectValue)
+        }
+
         return {
-            selectValue
+            selectValue,
+            valueChanged
         }
     }
 });
