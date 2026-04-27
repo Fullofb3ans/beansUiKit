@@ -20,7 +20,7 @@
             </option>
             <option v-for="(option, index) in propsOptions"
                     :key="index"
-                    :class="`${propsClass}__option`">
+                    :class="[`${propsClass}__option`, (markedOptions.length && markedOptions.includes(option)) ? `${propsClass}__option--marked` : '']">
                 {{ (option && typeof option == 'object' && 'value' in option) ? option.value : option }}
             </option>
         </select>
@@ -58,6 +58,10 @@ export default defineComponent({
         },
         selectIcon: {
             type: Object as PropType<Component>,
+        },
+        markedOptions: {
+            type: Array<unknown>,
+            default: []
         }
     },
     setup(props) {
