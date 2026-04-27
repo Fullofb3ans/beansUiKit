@@ -1,11 +1,3 @@
-<script setup lang="ts">
-import BaseButton from './components/BaseButton.vue';
-import BaseCheckbox from './components/BaseCheckbox.vue';
-import BaseInput from './components/BaseInput.vue';
-import BaseRadio from './components/BaseRadio.vue';
-import BaseSelect from './components/BaseSelect.vue';
-</script>
-
 <template>
 <BaseInput :propsClass="'input'"
            :propsLabel="'label'"
@@ -35,6 +27,12 @@ import BaseSelect from './components/BaseSelect.vue';
 <BaseSelect :propsClass="'select'"
             :propsLabel="'label'"
             :propsOptions="['1', '2']"
-            :propsPlaceholder="'Выберите значение'"
-            @valueChanged="(value: [string, number]) => console.log(value)" />
+            :propsPlaceholder="'Выберите значение'" />
 </template>
+<script setup lang="ts">
+import BaseButton from './components/BaseButton.vue';
+import BaseCheckbox from './components/BaseCheckbox.vue';
+import BaseInput from './components/BaseInput.vue';
+import BaseRadio from './components/BaseRadio.vue';
+import BaseSelect from './components/BaseSelect.vue';
+</script>

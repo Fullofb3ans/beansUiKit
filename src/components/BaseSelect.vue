@@ -34,7 +34,11 @@ import { defineComponent, ref, type Component, type PropType } from 'vue';
 
 export default defineComponent({
     components: {},
-    emits: ['valueChanged'],
+    emits: {
+        valueChanged: (value: string | number) => {
+            return typeof value === 'string' || typeof value === 'number'
+        }
+    },
     props: {
         propsClass: {
             type: String,
@@ -68,7 +72,7 @@ export default defineComponent({
         const selectValue = ref(props.propsValue || '');
 
         const valueChanged = () => {
-            emit('valueChanged', selectValue)
+            emit('valueChanged', selectValue.value)
         }
 
         return {
