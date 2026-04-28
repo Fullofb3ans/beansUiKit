@@ -20,9 +20,20 @@ export default defineConfig({
     },
   },
   plugins: [
-    vue(),
+    vue({
+      script: {
+        defineModel: true,
+        propsDestructure: true,
+      }
+    }),
     dts({
       insertTypesEntry: true,
+      tsconfigPath: './tsconfig.app.json',
+      include: ['src/components/**/*'],
+      exclude: ['src/**/*.spec.ts', 'src/**/*.test.ts'],
+      beforeWriteFile: (filePath, content) => {
+        return { filePath, content };
+      },
     }),
   ],
   resolve: {
