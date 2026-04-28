@@ -29,9 +29,19 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
       tsconfigPath: './tsconfig.app.json',
-      include: ['src/components/**/*'],
+      include: ['src/components/**/*.vue', 'src/components/**/*.ts'],
       exclude: ['src/**/*.spec.ts', 'src/**/*.test.ts'],
+      rollupTypes: false,
+      copyDtsFiles: true,
+      staticImport: true,
+      compilerOptions: {
+        skipLibCheck: true,
+      },
+      entryRoot: 'src/components',
+      outDir: 'dist',
       beforeWriteFile: (filePath, content) => {
+        // Log for debugging
+        console.log(`Writing dts file: ${filePath}, length: ${content.length}`);
         return { filePath, content };
       },
     }),

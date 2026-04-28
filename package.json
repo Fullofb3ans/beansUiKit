@@ -9,13 +9,14 @@
   "exports": {
     ".": {
       "import": "./dist/beansBaseActions.es.ts",
-      "require": "./dist/beansBaseActions.umd.ts"
+      "require": "./dist/beansBaseActions.umd.ts",
+      "types": "./dist/beansBaseActions.es.d.ts"
     },
     "./styles": "./dist/style.css"
   },
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build",
+    "build": "vue-tsc -b && vite build && node scripts/post-build.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
