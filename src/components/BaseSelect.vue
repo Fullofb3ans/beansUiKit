@@ -32,13 +32,19 @@
 <script lang='ts'>
 import { defineComponent, ref, type Component, type PropType } from 'vue';
 
+interface BaseSelectProps {
+    propsClass?: string;
+    propsLabel?: string;
+    propsValue?: string | number;
+    propsOptions?: unknown[];
+    propsPlaceholder?: string;
+    labelIcon?: Component;
+    selectIcon?: Component;
+    markedOptions?: unknown[];
+}
+
 export default defineComponent({
-    components: {},
-    emits: {
-        valueChanged: (value: string | number) => {
-            return typeof value === 'string' || typeof value === 'number'
-        }
-    },
+    emits: ['valueChanged'],
     props: {
         propsClass: {
             type: String,
@@ -51,8 +57,8 @@ export default defineComponent({
             type: [String, Number],
         },
         propsOptions: {
-            type: Array<unknown>,
-            default: []
+            type: Array as PropType<unknown[]>,
+            default: () => []
         },
         propsPlaceholder: {
             type: String,
@@ -64,11 +70,11 @@ export default defineComponent({
             type: Object as PropType<Component>,
         },
         markedOptions: {
-            type: Array<unknown>,
-            default: []
+            type: Array as PropType<unknown[]>,
+            default: () => []
         }
     },
-    setup(props, { emit }) {
+    setup(props: BaseSelectProps, { emit }) {
         const selectValue = ref(props.propsValue || '');
 
         const valueChanged = () => {
