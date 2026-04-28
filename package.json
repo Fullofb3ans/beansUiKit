@@ -3,13 +3,14 @@
   "private": false,
   "version": "0.0.12",
   "type": "module",
+  "types": "./dist/beansBaseActions.es.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "import": "./dist/beansBaseActions.es.ts",
-      "require": "./dist/beansBaseActions.umd.ts",
+      "import": "./dist/beansBaseActions.es.js",
+      "require": "./dist/beansBaseActions.umd.js",
       "types": "./dist/beansBaseActions.es.d.ts"
     },
     "./styles": "./dist/style.css"

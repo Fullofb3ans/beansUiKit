@@ -8,7 +8,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/components/index.ts'),
       name: 'beansBaseActions',
-      fileName: (format) => `beansBaseActions.${format}.ts`,
+      fileName: (format) => `beansBaseActions.${format}.js`,
     },
     rollupOptions: {
       external: ['vue'],

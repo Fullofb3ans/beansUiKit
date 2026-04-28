@@ -1,4 +1,4 @@
-import { readFile, writeFile, copyFile } from 'fs/promises';
+import { writeFile } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -9,15 +9,14 @@ const distDir = join(rootDir, 'dist');
 
 async function fixDts() {
   try {
-    // Read the generated index.d.ts
-    const indexPath = join(distDir, 'src', 'components', 'index.d.ts');
-    const content = await readFile(indexPath, 'utf-8');
-    
-    // Write to beansBaseActions.es.d.ts
     const esDtsPath = join(distDir, 'beansBaseActions.es.d.ts');
+    // Generate correct entry file that re-exports from the correct relative paths
+    const content = `export { default as BaseButton } from './src/components/BaseButton.vue';
+export { default as BaseSelect } from './src/components/BaseSelect.vue';`;
+    
     await writeFile(esDtsPath, content, 'utf-8');
     
-    console.log(`Fixed ${esDtsPath} with content from ${indexPath}`);
+    console.log(`Generated correct type definitions at ${esDtsPath}`);
   } catch (error) {
     console.error('Error fixing dts:', error);
     process.exit(1);
