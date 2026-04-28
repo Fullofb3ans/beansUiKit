@@ -1,4 +1,5 @@
-<template><!-- <BaseInput :propsClass="'input'"
+<template>
+<BaseInput :propsClass="'input'"
            :propsLabel="'label'"
            :propsType="'text'"
            :propsValue="'test'"
@@ -21,7 +22,7 @@
 <BaseButton :propsLabel="'label'"
             :propsClass="'button'"
             :propsTitle="'title'"
-            @clicked="console.log('clicked')" /> -->
+            @clicked="console.log('clicked')" />
 
 <BaseSelect :propsClass="'select'"
             :propsLabel="'label'"
@@ -35,6 +36,6 @@ import BaseButton from './components/BaseButton.vue';
 import BaseCheckbox from './components/BaseCheckbox.vue';
 import BaseInput from './components/BaseInput.vue';
 import BaseRadio from './components/BaseRadio.vue';
+import BaseSelect from './components/BaseSelect.vue';
 
-import { BaseSelect } from 'beans-ui-kit';
 </script>
