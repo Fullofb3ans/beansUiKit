@@ -27,8 +27,19 @@
         <Component v-if="selectIcon"
                    :is="selectIcon" />
     </div>
+    <div v-if="error"
+         :class="`${propsClass}__error__wrapper`">
+        <Component v-if="errorIcon"
+                   :is="errorIcon"
+                   :class="`${propsClass}__error__icon`" />
+        <div v-if="error"
+             :class="`${propsClass}__error`">
+            {{ error }}
+        </div>
+    </div>
 </div>
 </template>
+
 <script lang='ts'>
 import { defineComponent, ref, type Component, type PropType } from 'vue';
 
@@ -38,8 +49,10 @@ interface BaseSelectProps {
     propsValue?: string | number;
     propsOptions?: unknown[];
     propsPlaceholder?: string;
+    error?: string;
     labelIcon?: Component;
     selectIcon?: Component;
+    errorIcon?: Component;
     markedOptions?: unknown[];
 }
 
@@ -63,11 +76,17 @@ export default defineComponent({
         propsPlaceholder: {
             type: String,
         },
+        error: {
+            type: String
+        },
         labelIcon: {
             type: Object as PropType<Component>,
         },
         selectIcon: {
             type: Object as PropType<Component>,
+        },
+        errorIcon: {
+            type: Object as PropType<Component>
         },
         markedOptions: {
             type: Array as PropType<unknown[]>,

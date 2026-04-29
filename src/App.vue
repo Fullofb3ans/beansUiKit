@@ -28,6 +28,7 @@
             :propsLabel="'label'"
             :propsOptions="['1', '2']"
             :markedOptions="['1']"
+            :error="'errorTest'"
             :propsPlaceholder="'Выберите значение'"
             @valueChanged="console.log(1)" />
 </template>
