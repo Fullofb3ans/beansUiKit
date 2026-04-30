@@ -1,5 +1,5 @@
 <template>
-<div :class="`${propsClass}__wrapper`">
+<div :class="[`${propsClass}__wrapper`, disabled ? `${propsClass}__wrapper--disabled` : '']">
     <label v-if="propsLabel"
            :class="`${propsClass}__label`"
            :for="propsClass">
@@ -9,6 +9,7 @@
     </label>
     <div :class="`${propsClass}__inner`">
         <select :class="`${propsClass}`"
+                :disabled="disabled"
                 :id="propsClass"
                 v-model="selectValue"
                 @change="valueChanged">
@@ -49,6 +50,7 @@ interface BaseSelectProps {
     propsValue?: string | number;
     propsOptions?: unknown[];
     propsPlaceholder?: string;
+    disabled?: boolean;
     error?: string;
     labelIcon?: Component;
     selectIcon?: Component;
@@ -91,6 +93,10 @@ export default defineComponent({
         markedOptions: {
             type: Array as PropType<unknown[]>,
             default: () => []
+        },
+        disabled: {
+            type: Boolean,
+            default: false
         }
     },
     setup(props: BaseSelectProps, { emit }) {

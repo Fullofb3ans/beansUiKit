@@ -29,6 +29,7 @@
             :propsOptions="['1', '2']"
             :markedOptions="['1']"
             :error="'errorTest'"
+            :disabled="true"
             :propsPlaceholder="'Выберите значение'"
             @valueChanged="console.log(1)" />
 </template>
