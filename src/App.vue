@@ -32,7 +32,12 @@
             :error="'testError'"
             :disabled="true"
             :propsPlaceholder="'Выберите значение'"
-            @valueChanged="console.log('testEmit')" />
+            @valueChanged="console.log('testEmit')">
+
+    <template v-slot:label-icon> </template>
+    <template v-slot:select-icon> </template>
+    <template v-slot:error-icon> </template>
+</BaseSelect>
 </template>
 <script setup lang="ts">
 import BaseButton from './components/BaseButton.vue';

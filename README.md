@@ -14,15 +14,18 @@
 - `propsClass` (String, default: 'select') - CSS класс для компонента, по умолчанию передается также следующим элементам: 
 ${propsClass}__wrapper - для обертки над всем компонентом, ${propsClass}__inner - только для селекта и его иконки
 - `propsLabel` (String) - Текст лейбла для выпадающего списка, принимает класс - ${propsClass}__label
-- `labelIcon` (Component) - Иконка для лейбла, передается vue компонентом, принимает ${propsClass}__label__icon
 - `propsValue` (String|Number) - Текущее значение списка
 - `propsOptions` (Array<unknown>, default: []) - Массив значений для выпадающего списка, передается либо массивом строк, либо объектом элементов с ключом "value", класс - ${propsClass}__option
 - `markedOptions` (Array<unknown>, default: []) - Массив значений в выпадающем списке, при совпадении элемента с элементом propsOptions - принимается класс ${propsClass}__option--marked
 - `propsPlaceholder` (String) - Текст первого option в выпадающем списке, по умолчанию со значением disabled, принимает ${propsClass}__placeholder
 - `disabled` (Boolean, default: false) - Отключает выпадающий список, список принимает класс ${propsClass}__wrapper--disabled
 - `error` (String) - Текст ошибки, при передаче рендерится блок ${propsClass}__error__wrapper, где внутри ${propsClass}__error
-- `errorIcon` (Component) - Передается vue компонентом, рендерится внутри ${propsClass}__error__wrapper с классом ${propsClass}__error__icon
-- `selectIcon` (Component) - Передается vue компонентом, иконка для селекта, принимает класс - ${propsClass}__select__icon
+
+**Слоты || Slots**:
+Есть несколько слотов внутри: 
+- `label-icon` - для иконки лейбла
+- `select-icon` - для иконки внутри выпадающего списка
+- `error-icon` - для иконки у текста ошибки
 
 **События || Events**:
 - `valueChanged` - @change обработка - emit('valueChanged', selectValue.value)
@@ -36,7 +39,12 @@ ${propsClass}__wrapper - для обертки над всем компонен�
             :error="'testError'"
             :disabled="true"
             :propsPlaceholder="'Выберите значение'"
-            @valueChanged="console.log('testEmit')" />
+            @valueChanged="console.log('testEmit')">
+
+    <template v-slot:label-icon> </template>
+    <template v-slot:select-icon> </template>
+    <template v-slot:error-icon> </template>
+</BaseSelect>
 ```
 
 #### 2. BaseButton.vue
@@ -45,10 +53,21 @@ ${propsClass}__wrapper - для обертки над всем компонен�
 **Пропсы || Props**:
 - `propsClass` (String, default: 'button') - класс для кнопки 
 - `propsLabel` (String) - текст лейбла над кнопкой
-Внутри кнопки slot, можно использовать под текст и иконку
+
+**Слоты || Slots**:
+Внутри кнопки один slot, можно использовать под текст и иконку
 
 **События || Events**:
 - `clicked` - @click обработка - $emit('clicked')
+
+**Пример || Example**:
+```typescript
+<BaseButton :propsLabel="'label'"
+            :propsClass="'button'"
+            @clicked="console.log('clicked')">
+    testTitle
+</BaseButton>
+```
 
 ## Использование || Usage
 ```typescript
