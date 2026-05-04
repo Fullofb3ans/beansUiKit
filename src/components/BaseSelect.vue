@@ -5,7 +5,8 @@
            :for="propsClass">
         <span>{{ propsLabel }}</span>
         <Component v-if=labelIcon
-                   :is="labelIcon" />
+                   :is="labelIcon"
+                   :class="`${propsClass}__label__icon`" />
     </label>
     <div :class="`${propsClass}__inner`">
         <select :class="`${propsClass}`"
@@ -26,6 +27,7 @@
             </option>
         </select>
         <Component v-if="selectIcon"
+                   :class="`${propsClass}__select__icon`"
                    :is="selectIcon" />
     </div>
     <div v-if="error"
@@ -33,8 +35,7 @@
         <Component v-if="errorIcon"
                    :is="errorIcon"
                    :class="`${propsClass}__error__icon`" />
-        <div v-if="error"
-             :class="`${propsClass}__error`">
+        <div :class="`${propsClass}__error`">
             {{ error }}
         </div>
     </div>

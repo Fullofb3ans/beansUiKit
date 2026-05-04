@@ -1,88 +1,47 @@
 # beansUiKit
 
-## Components
+## О Библиотеке
 
-This UI kit provides a set of reusable Vue 3 components built with TypeScript.
+Библиотека унифицированных компонентов под всевозможные(в будущем) формы. Планирую развивать компоненты исходя из своих рабочих задач.
+Сейчас наиболее функциональный - BaseSelect, последовательно буду доделывать и остальные.  
 
-### Available Components
+### Доступные компоненты
 
-#### 1. BaseInput.vue
-**English**: A versatile input component with label support, value binding, and type customization. Emits `valueChanged` event on input changes.
-
-**Русский**: Универсальный компонент ввода с поддержкой метки, привязкой значения и настройкой типа. Генерирует событие `valueChanged` при изменении ввода.
+#### 1. BaseSelect.vue
+Максимально унифицированный настраиваемый компонент выпадающего списка с поддержкой динамической передачи различных пропсов, направленный на закрытие любых нюансов. Генерирует событие `valueChanged` при изменении выбора.
 
 **Props**:
-- `propsClass` (String, default: 'input') - CSS class for the input
-- `propsLabel` (String) - Label text for the input
-- `propsValue` (String|Number) - Initial value
-- `propsType` (String, default: 'text') - Input type (text, number, email, etc.)
+- `propsClass` (String, default: 'select') - CSS класс для компонента, по умолчанию передается также следующим элементам: 
+${propsClass}__wrapper - для обертки над всем компонентом, ${propsClass}__inner - только для селекта и его иконки
+- `propsLabel` (String) - Текст лейбла для выпадающего списка, принимает класс - ${propsClass}__label
+- `labelIcon` (Component) - Иконка для лейбла, передается vue компонентом, принимает ${propsClass}__label__icon
+- `propsValue` (String|Number) - Значение списка
+- `propsOptions` (Array<unknown>, default: []) - Массив значений для выпадающего списка, передается либо массивом строк, либо объектом элементов с ключом "value", класс - ${propsClass}__option
+- `markedOptions` (Array<unknown>, default: []) - Массив значений в выпадающем списке, при совпадении элемента с элементом propsOptions - принимается класс ${propsClass}__option--marked
+- `propsPlaceholder` (String) - Текст первого option в выпадающем списке, по умолчанию со значением disabled, принимает ${propsClass}__placeholder
+- `disabled` (Boolean, default: false) - Отключает выпадающий список, список принимает класс ${propsClass}__wrapper--disabled
+- `error` (String) - Текст ошибки, при передаче рендерится блок ${propsClass}__error__wrapper, где внутри ${propsClass}__error
+- `errorIcon` (Component) - Передается vue компонентом, рендерится внутри ${propsClass}__error__wrapper с классом ${propsClass}__error__icon
+- `selectIcon` (Component) - Передается vue компонентом, иконка для селекта, принимает класс - ${propsClass}__select__icon
 
-**Events**:
-- `valueChanged` - Emitted when input value changes
+**События**:
+- `valueChanged` - @change обработка - emit('valueChanged', selectValue.value)
 
 #### 2. BaseButton.vue
-**English**: A button component with label support and click event emission. Customizable class and title.
-
-**Русский**: Компонент кнопки с поддержкой метки и генерацией события клика. Настраиваемый класс и заголовок.
+Компонент кнопки. Настраиваемый класс и заголовок.
 
 **Props**:
-- `propsClass` (String, default: 'button') - CSS class for the button
-- `propsTitle` (String, default: '') - Button text
-- `propsLabel` (String) - Label text above the button
+- `propsClass` (String, default: 'button') - класс для кнопки 
+- `propsTitle` (String, default: '') - текст внутри кнопки 
+- `propsLabel` (String) - текст над кнопкой
 
 **Events**:
-- `clicked` - Emitted when button is clicked
+- `clicked` - @click обработка - $emit('clicked')
 
-#### 3. BaseSelect.vue
-**English**: A select dropdown component with options array support, label, and value binding. Emits `valueChanged` event on selection change.
-
-**Русский**: Компонент выпадающего списка с поддержкой массива опций, метки и привязки значения. Генерирует событие `valueChanged` при изменении выбора.
-
-**Props**:
-- `propsClass` (String, default: '') - CSS class for the select
-- `propsText` (String, default: '') - Placeholder text
-- `propsLabel` (String) - Label text for the select
-- `propsValue` (String|Number) - Selected value
-- `propsOptions` (Array<unknown>, default: []) - Array of options (can be strings or objects with 'value' property)
-
-**Events**:
-- `valueChanged` - Emitted when selection changes
-
-#### 4. BaseRadio.vue
-**English**: A radio button component with group name support for radio groups. Emits `valueChanged` event with name and value.
-
-**Русский**: Компонент радиокнопки с поддержкой имени группы для радио-групп. Генерирует событие `valueChanged` с именем и значением.
-
-**Props**:
-- `propsClass` (String, default: 'radio') - CSS class for the radio button
-- `propsLabel` (String) - Label text for the radio button
-- `propsValue` (String|Number) - Value of this radio option
-- `propsName` (String, default: '') - Group name for radio buttons
-
-**Events**:
-- `valueChanged` - Emitted with (groupName, value) when radio is selected
-
-#### 5. BaseCheckbox.vue
-**English**: A checkbox component with status binding and value emission. Emits `valueChanged` event with value and checked state.
-
-**Русский**: Компонент чекбокса с привязкой статуса и генерацией значения. Генерирует событие `valueChanged` со значением и состоянием выбора.
-
-**Props**:
-- `propsClass` (String, default: 'checkbox') - CSS class for the checkbox
-- `propsLabel` (String) - Label text for the checkbox
-- `propsValue` (String|Number) - Value associated with this checkbox
-- `propsStatus` (Boolean, default: false) - Initial checked status
-
-**Events**:
-- `valueChanged` - Emitted with (value, checkedState) when checkbox state changes
-
-## Usage
-
-Components can be imported individually or through the main export file (`src/components/index.ts`).
-
+## Использование || Usage
 ```typescript
 import BaseButton from 'beans-ui-kit';
-import BaseInput from 'beans-ui-kit';
+import BaseSelect from 'beans-ui-kit';
 
-// Or use the index export (currently exports BaseButton and BaseSelect)
+// Или
 import { BaseButton, BaseSelect } from 'beans-ui-kit';
