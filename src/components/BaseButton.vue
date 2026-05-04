@@ -6,7 +6,7 @@
   </label>
   <button @click="$emit('clicked')"
           :class="`${propsClass}`">
-    {{ propsTitle }}
+    <slot></slot>
   </button>
 </div>
 </template>
@@ -20,10 +20,6 @@ export default defineComponent({
     propsClass: {
       type: String,
       default: 'button'
-    },
-    propsTitle: {
-      type: String,
-      default: ''
     },
     propsLabel: {
       type: String,

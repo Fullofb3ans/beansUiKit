@@ -44,8 +44,8 @@ ${propsClass}__wrapper - для обертки над всем компонен�
 
 **Пропсы || Props**:
 - `propsClass` (String, default: 'button') - класс для кнопки 
-- `propsTitle` (String, default: '') - текст внутри кнопки 
-- `propsLabel` (String) - текст над кнопкой
+- `propsLabel` (String) - текст лейбла над кнопкой
+Внутри кнопки slot, можно использовать под текст и иконку
 
 **События || Events**:
 - `clicked` - @click обработка - $emit('clicked')

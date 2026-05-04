@@ -21,8 +21,9 @@
 
 <BaseButton :propsLabel="'label'"
             :propsClass="'button'"
-            :propsTitle="'title'"
-            @clicked="console.log('clicked')" />
+            @clicked="console.log('clicked')">
+    testTitle
+</BaseButton>
 
 <BaseSelect :propsClass="'select'"
             :propsLabel="'selectLabel'"
