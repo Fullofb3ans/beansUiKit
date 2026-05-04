@@ -25,13 +25,13 @@
             @clicked="console.log('clicked')" />
 
 <BaseSelect :propsClass="'select'"
-            :propsLabel="'label'"
-            :propsOptions="['1', '2']"
-            :markedOptions="['1']"
-            :error="'errorTest'"
+            :propsLabel="'selectLabel'"
+            :propsOptions="['test1', 'test2']"
+            :markedOptions="['test1']"
+            :error="'testError'"
             :disabled="true"
             :propsPlaceholder="'Выберите значение'"
-            @valueChanged="console.log(1)" />
+            @valueChanged="console.log('testEmit')" />
 </template>
 <script setup lang="ts">
 import BaseButton from './components/BaseButton.vue';
