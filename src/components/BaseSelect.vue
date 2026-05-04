@@ -4,7 +4,10 @@
            :class="`${propsClass}__label`"
            :for="propsClass">
         <span>{{ propsLabel }}</span>
-        <slot name="label-icon"></slot>
+        <div v-if="$slots['label-icon']"
+             :class="`${propsClass}__label__icon`">
+            <slot name="label-icon"></slot>
+        </div>
     </label>
     <div :class="`${propsClass}__inner`">
         <select :class="`${propsClass}`"
@@ -24,14 +27,17 @@
                 {{ (option && typeof option == 'object' && 'value' in option) ? option.value : option }}
             </option>
         </select>
-        <slot name="select-icon"></slot>
+        <div v-if="$slots['select-icon']"
+             :class="`${propsClass}__icon`">
+            <slot name="select-icon"></slot>
+        </div>
     </div>
     <div v-if="error"
          :class="`${propsClass}__error__wrapper`">
-        <!-- <Component v-if="errorIcon"
-                   :is="errorIcon"
-                   :class="`${propsClass}__error__icon`" /> -->
-        <slot name="error-icon"></slot>
+        <div v-if="$slots['error-icon']"
+             :class="`${propsClass}__error__icon`">
+            <slot name="error-icon"></slot>
+        </div>
     </div>
 </div>
 </template>

@@ -23,9 +23,9 @@ ${propsClass}__wrapper - для обертки над всем компонен�
 
 **Слоты || Slots**:
 Есть несколько слотов внутри: 
-- `label-icon` - для иконки лейбла
-- `select-icon` - для иконки внутри выпадающего списка
-- `error-icon` - для иконки у текста ошибки
+- `label-icon` - для иконки лейбла, обертка с классом - ${propsClass}__label__icon
+- `select-icon` - для иконки внутри выпадающего списка, обертка с классом - ${propsClass}__select__icon
+- `error-icon` - для иконки у текста ошибки, обертка с классом - ${propsClass}__error__icon
 
 **События || Events**:
 - `valueChanged` - @change обработка - emit('valueChanged', selectValue.value)
