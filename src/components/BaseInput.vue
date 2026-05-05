@@ -9,6 +9,10 @@
            :id="propsClass"
            :type="propsType"
            v-model="inputValue" />
+    <div v-if="$slots['input-icon']"
+         :class="`${propsClass}__icon__wrapper`">
+        <slot name="input-icon"></slot>
+    </div>
 </div>
 </template>
 <script lang='ts'>
@@ -37,7 +41,10 @@ export default defineComponent({
     setup(props, { emit }) {
         const inputValue = ref(props.propsValue);
 
-        watch((inputValue), () => { if (inputValue.value || inputValue.value == '') emit('valueChanged', inputValue.value) }, { deep: true, immediate: true })
+        watch((inputValue), () => {
+            if (inputValue.value || inputValue.value == '')
+                emit('valueChanged', inputValue.value)
+        }, { deep: true, immediate: true })
 
         return {
             inputValue

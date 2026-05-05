@@ -5,7 +5,7 @@
            :for="propsClass">
         <span>{{ propsLabel }}</span>
         <div v-if="$slots['label-icon']"
-             :class="`${propsClass}__label__icon`">
+             :class="`${propsClass}__label__icon__wrapper`">
             <slot name="label-icon"></slot>
         </div>
     </label>
@@ -28,14 +28,14 @@
             </option>
         </select>
         <div v-if="$slots['select-icon']"
-             :class="`${propsClass}__icon`">
+             :class="`${propsClass}__icon__wrapper`">
             <slot name="select-icon"></slot>
         </div>
     </div>
     <div v-if="error"
          :class="`${propsClass}__error__wrapper`">
         <div v-if="$slots['error-icon']"
-             :class="`${propsClass}__error__icon`">
+             :class="`${propsClass}__error__icon__wrapper`">
             <slot name="error-icon"></slot>
         </div>
     </div>

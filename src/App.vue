@@ -1,9 +1,11 @@
 <template>
-<BaseInput :propsClass="'input'"
-           :propsLabel="'label'"
-           :propsType="'text'"
+<BaseInput :propsClass="'testInput'"
+           :propsLabel="'testLabel'"
+           :propsType="'testText'"
            :propsValue="'test'"
-           @valueChanged="(value) => console.log(value)" />
+           @valueChanged="(value) => console.log(value)">
+    <template v-slot:input-icon></template>
+</BaseInput>
 
 <BaseCheckbox :propsClass="'checkbox'"
               :propsLabel="'label'"

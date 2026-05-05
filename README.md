@@ -23,9 +23,9 @@ ${propsClass}__wrapper - для обертки над всем компонен�
 
 **Слоты || Slots**:
 Есть несколько слотов внутри: 
-- `label-icon` - для иконки лейбла, обертка с классом - ${propsClass}__label__icon
-- `select-icon` - для иконки внутри выпадающего списка, обертка с классом - ${propsClass}__select__icon
-- `error-icon` - для иконки у текста ошибки, обертка с классом - ${propsClass}__error__icon
+- `label-icon` - для иконки лейбла, обертка с классом - ${propsClass}__label__icon__wrapper
+- `select-icon` - для иконки внутри выпадающего списка, обертка с классом - ${propsClass}__select__icon__wrapper
+- `error-icon` - для иконки у текста ошибки, обертка с классом - ${propsClass}__error__icon__wrapper
 
 **События || Events**:
 - `valueChanged` - @change обработка - emit('valueChanged', selectValue.value)
@@ -67,6 +67,32 @@ ${propsClass}__wrapper - для обертки над всем компонен�
             @clicked="console.log('clicked')">
     testTitle
 </BaseButton>
+```
+
+#### 3. BaseInput.vue
+Компонент инпута. Настраиваемый класс и заголовок.
+
+**Пропсы || Props**:
+- `propsClass` (String, default: 'input') - класс для кнопки 
+- `propsLabel` (String) - текст лейбла над кнопкой
+- `propsType` (String, default: 'text') - тип инпута
+- `propsValue` (String, Number) - значение инпута
+
+**Слоты || Slots**:
+Внутри кнопки один slot, можно использовать под иконку
+
+**События || Events**:
+- `valueChanged` - стоит watch, отслеживающий изменение input
+
+**Пример || Example**:
+```typescript
+<BaseInput :propsClass="'testInput'"
+           :propsLabel="'testLabel'"
+           :propsType="'testText'"
+           :propsValue="'test'"
+           @valueChanged="(value) => console.log(value)">
+    <template v-slot:input-icon></template>
+</BaseInput>
 ```
 
 ## Использование || Usage
