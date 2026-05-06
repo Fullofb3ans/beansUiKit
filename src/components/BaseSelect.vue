@@ -43,7 +43,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, ref, type Component, type PropType } from 'vue';
+import { defineComponent, ref, type Component, type PropType, watch } from 'vue';
 
 interface BaseSelectProps {
     propsClass?: string;
@@ -101,7 +101,11 @@ export default defineComponent({
         }
     },
     setup(props: BaseSelectProps, { emit }) {
-        const selectValue = ref(props.propsValue || '');
+        const selectValue = ref();
+
+        watch((props), () => {
+            if (props.propsValue) selectValue.value = props.propsValue
+        })
 
         const valueChanged = () => {
             emit('valueChanged', selectValue.value)
