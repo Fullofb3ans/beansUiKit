@@ -43,7 +43,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, ref, type Component, type PropType, watch } from 'vue';
+import { defineComponent, ref, type Component, type PropType } from 'vue';
 
 interface BaseSelectProps {
     propsClass?: string;
