@@ -101,11 +101,7 @@ export default defineComponent({
         }
     },
     setup(props: BaseSelectProps, { emit }) {
-        const selectValue = ref("");
-
-        watch((props), () => {
-            if (props.propsValue) selectValue.value = String(props.propsValue)
-        })
+        const selectValue = ref(props?.propsValue || "");
 
         const valueChanged = () => {
             emit('valueChanged', selectValue.value)
