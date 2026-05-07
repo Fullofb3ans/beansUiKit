@@ -1,7 +1,7 @@
 <template>
 <div :class="`${propsClass}__wrapper`">
     <label v-if="propsLabel"
-           :class="`${propsClass}__wrapper`"
+           :class="`${propsClass}__label`"
            :for="propsClass">
         {{ propsLabel }}
     </label>
