@@ -41,6 +41,10 @@ export default defineComponent({
         propsPlaceholder: {
             type: String,
             default: ''
+        },
+        propsName: {
+            type: String,
+            default: ''
         }
     },
     setup(props, { emit }) {
@@ -48,7 +52,7 @@ export default defineComponent({
 
         watch((inputValue), () => {
             if (inputValue.value || inputValue.value == '')
-                emit('valueChanged', inputValue.value)
+                emit('valueChanged', inputValue.value, props.propsName)
         }, { deep: true, immediate: true })
 
         return {
