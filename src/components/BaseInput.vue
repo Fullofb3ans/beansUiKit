@@ -9,6 +9,8 @@
            :id="propsClass"
            :type="propsType"
            :placeholder="propsPlaceholder"
+           :min="min"
+           :max="max"
            v-model="inputValue" />
     <div v-if="$slots['input-icon']"
          :class="`${propsClass}__icon__wrapper`">
@@ -45,6 +47,12 @@ export default defineComponent({
         propsName: {
             type: String,
             default: ''
+        },
+        min: {
+            type: Number
+        },
+        max: {
+            type: Number
         }
     },
     setup(props, { emit }) {
