@@ -1,9 +1,11 @@
 <template>
 <div :class="[`${propsClass}__wrapper`, disabled ? `${propsClass}__wrapper--disabled` : '']">
     <label v-if="propsLabel"
-           :class="`${propsClass}__label`"
+           :class="`${propsClass}__label__wrapper`"
            :for="propsClass">
-        <span>{{ propsLabel }}</span>
+        <span :class="`${propsClass}__label`">
+            {{ propsLabel }}
+        </span>
         <div v-if="$slots['label-icon']"
              :class="`${propsClass}__label__icon__wrapper`">
             <slot name="label-icon"></slot>
@@ -37,9 +39,9 @@
         <span :class="`${propsClass}__error`">
             {{ error }}
         </span>
-        <div :class="`${propsClass}__error__icon__wrapper`">
-            <slot v-if="$slots['error-icon']"
-                  name="error-icon"></slot>
+        <div v-if="$slots['error-icon']"
+             :class="`${propsClass}__error__icon__wrapper`">
+            <slot name="error-icon"></slot>
         </div>
     </div>
 </div>
