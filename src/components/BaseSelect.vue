@@ -36,6 +36,9 @@
          :class="`${propsClass}__error__wrapper`">
         <div v-if="$slots['error-icon']"
              :class="`${propsClass}__error__icon__wrapper`">
+            <span :class="`${propsClass}__error`">
+                {{ error }}
+            </span>
             <slot name="error-icon"></slot>
         </div>
     </div>
