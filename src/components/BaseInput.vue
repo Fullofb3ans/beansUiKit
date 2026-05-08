@@ -59,8 +59,16 @@ export default defineComponent({
         const inputValue = ref(props.propsValue);
 
         watch((inputValue), () => {
-            if (inputValue.value || inputValue.value == '')
-                emit('valueChanged', inputValue.value, props.propsName)
+            if (!inputValue.value) return
+
+            if (props.min && (Number(inputValue.value) < props.min)) {
+                inputValue.value = props.min
+            }
+            else if (props.max && (Number(inputValue.value) > props.max)) {
+                inputValue.value = props.max
+            }
+
+            emit('valueChanged', inputValue.value, props.propsName)
         }, { deep: true, immediate: true })
 
         return {
