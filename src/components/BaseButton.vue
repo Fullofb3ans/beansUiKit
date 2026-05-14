@@ -4,8 +4,9 @@
          :class="`${propsClass}__label`">
     {{ propsLabel }}
   </label>
-  <button @click="$emit('clicked')"
-          :class="`${propsClass}`">
+  <button :class="`${propsClass}`"
+          :disabled="disabled"
+          @click="$emit('clicked')">
     <slot></slot>
   </button>
 </div>
@@ -23,6 +24,10 @@ export default defineComponent({
     },
     propsLabel: {
       type: String,
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   }
 });
