@@ -111,7 +111,7 @@ export default defineComponent({
         watch((props), () => {
             if (props.propsValue)
                 selectValue.value = String(props.propsValue);
-        })
+        }, { immediate: true })
 
         const valueChanged = () => {
             emit('valueChanged', selectValue.value)

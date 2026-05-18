@@ -31,6 +31,7 @@
             :propsLabel="'selectLabel'"
             :propsOptions="['test1', 'test2']"
             :markedOptions="['test1']"
+            :propsValue="'test1'"
             :error="'testError'"
             :disabled="true"
             :propsPlaceholder="'Выберите значение'"
