@@ -2,7 +2,7 @@
 <div :class="[`${propsClass}__wrapper`, disabled ? `${propsClass}__wrapper--disabled` : '']">
     <label v-if="propsLabel"
            :class="`${propsClass}__label__wrapper`"
-           :for="propsClass">
+           :for="propsId">
         <span :class="`${propsClass}__label`">
             {{ propsLabel }}
         </span>
@@ -14,7 +14,7 @@
     <div :class="`${propsClass}__inner`">
         <select :class="`${propsClass}`"
                 :disabled="disabled"
-                :id="propsClass"
+                :id="propsId"
                 v-model="selectValue"
                 @change="valueChanged">
             <option :class="`${propsClass}__placeholder`"
@@ -67,6 +67,10 @@ interface BaseSelectProps {
 export default defineComponent({
     emits: ['valueChanged'],
     props: {
+        propsId: {
+            type: String,
+            default: 'baseSelect'
+        },
         propsClass: {
             type: String,
             default: 'select'
