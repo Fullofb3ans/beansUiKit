@@ -41,6 +41,12 @@
     <template v-slot:select-icon> </template>
     <template v-slot:error-icon> </template>
 </BaseSelect>
+
+<BaseTextarea :propsClass="'textarea'"
+              :propsLabel="'textareaLabel'"
+              :propsValue="'test'"
+              @valueChanged="(value) => console.log(value)">
+</BaseTextarea>
 </template>
 <script setup lang="ts">
 import BaseButton from './components/BaseButton.vue';
@@ -48,5 +54,6 @@ import BaseCheckbox from './components/BaseCheckbox.vue';
 import BaseInput from './components/BaseInput.vue';
 import BaseRadio from './components/BaseRadio.vue';
 import BaseSelect from './components/BaseSelect.vue';
+import BaseTextarea from './components/BaseTextarea.vue';
 
 </script>
