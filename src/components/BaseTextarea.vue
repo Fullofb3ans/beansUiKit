@@ -50,9 +50,9 @@ export default defineComponent({
     setup(props, { emit }) {
         const inputValue = ref(props.propsValue);
 
-        watch((inputValue), () => {
+        watch(() => inputValue.value, () => {
             emit('valueChanged', inputValue.value, props.propsName)
-        }, { deep: true, immediate: true })
+        }, { immediate: true })
 
         return {
             inputValue
