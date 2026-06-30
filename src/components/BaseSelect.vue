@@ -25,10 +25,12 @@
             </option>
             <option v-for="(option, index) in propsOptions"
                     :key="index"
-                    :value="typeof option == 'object' && option.value ? option.value : option"
+                    :value="option && typeof option == 'object' && 'value' in option ? option.value : option"
                     :class="[`${propsClass}__option`, (markedOptions.length && markedOptions.includes(option)) ? `${propsClass}__option--marked` : '']">
                 {{
-                    'label' in option ? option.label : 'value' in option ? option.value : option
+                    option && typeof option == 'object' && 'label' in option ? option.label : option && typeof option ==
+                        'object' && 'value' in option ?
+                        option.value : option
                 }}
             </option>
         </select>
