@@ -61,7 +61,7 @@ export default defineComponent({
         }
     },
     setup(props, { emit }) {
-        const inputValue = ref(props.propsValue);
+        const inputValue = ref<string | number>();
 
         watch(() => inputValue.value, () => {
             if (inputValue.value) {
@@ -74,6 +74,11 @@ export default defineComponent({
             }
             emit('valueChanged', inputValue.value, props.propsName)
         }, { immediate: true })
+
+        watch(() => props.propsValue, () => {
+            if (inputValue.value !== props.propsValue)
+                inputValue.value = props.propsValue
+        })
 
         return {
             inputValue
