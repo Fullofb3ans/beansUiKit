@@ -78,7 +78,7 @@ export default defineComponent({
         watch(() => props.propsValue, () => {
             if (inputValue.value !== props.propsValue)
                 inputValue.value = props.propsValue
-        })
+        }, { immediate: true })
 
         return {
             inputValue
