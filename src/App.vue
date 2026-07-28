@@ -55,5 +55,4 @@ import BaseInput from './components/BaseInput.vue';
 import BaseRadio from './components/BaseRadio.vue';
 import BaseSelect from './components/BaseSelect.vue';
 import BaseTextarea from './components/BaseTextarea.vue';
-
 </script>

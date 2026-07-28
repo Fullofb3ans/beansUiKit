@@ -3,7 +3,7 @@
   "private": false,
   "version": "0.0.51",
   "type": "module",
-  "types": "./dist/beansBaseActions.es.d.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -11,7 +11,7 @@
     ".": {
       "import": "./dist/beansBaseActions.es.js",
       "require": "./dist/beansBaseActions.umd.js",
-      "types": "./dist/beansBaseActions.es.d.ts"
+      "types": "./dist/index.d.ts"
     },
     "./styles": "./dist/style.css"
   },
@@ -24,6 +24,7 @@
     "vue": ">=3"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.58.12",
     "@types/node": "^24.12.2",
     "@vitejs/plugin-vue": "^6.0.5",
     "@vue/language-core": "^3.3.8",
