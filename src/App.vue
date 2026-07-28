@@ -33,7 +33,7 @@
             :markedOptions="['test1']"
             :propsValue="'test1'"
             :error="'testError'"
-            :disabled="true"
+            :disabled="false"
             :propsPlaceholder="'Выберите значение'"
             @valueChanged="console.log('testEmit')">
 

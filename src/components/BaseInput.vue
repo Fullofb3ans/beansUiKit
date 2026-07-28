@@ -2,11 +2,11 @@
 <div :class="`${propsClass}__wrapper`">
     <label v-if="propsLabel"
            :class="`${propsClass}__label`"
-           :for="propsClass">
+           :for="propsName">
         {{ propsLabel }}
     </label>
     <input :class="propsClass"
-           :id="propsClass"
+           :id="propsName"
            :type="propsType"
            :placeholder="propsPlaceholder"
            :min="min"
@@ -81,7 +81,7 @@ export default defineComponent({
         }, { immediate: true })
 
         return {
-            inputValue
+            inputValue,
         }
     }
 });
