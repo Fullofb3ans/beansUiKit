@@ -36,6 +36,7 @@ export default defineConfig({
       compilerOptions: {
         skipLibCheck: true,
       },
+      bundleTypes: true,
       entryRoot: 'src/components',
       beforeWriteFile: (filePath, content) => {
         // Log for debugging
