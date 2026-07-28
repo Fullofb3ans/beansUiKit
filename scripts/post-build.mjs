@@ -10,12 +10,7 @@ const distDir = join(rootDir, 'dist');
 async function fixDts() {
   try {
     const esDtsPath = join(distDir, 'beansBaseActions.es.d.ts');
-    // Generate correct entry file that re-exports from the correct relative paths
-    const content = `export { default as BaseButton } from './src/components/BaseButton.vue';
-export { default as BaseSelect } from './src/components/BaseSelect.vue';
-export { default as BaseInput } from './src/components/BaseInput.vue';
-export { default as BaseTextarea } from './src/components/BaseTextarea.vue';
-    `;
+    const content = `export { BaseButton, BaseCheckbox, BaseInput, BaseRadio, BaseSelect, BaseTextarea } from './index';`;
     await writeFile(esDtsPath, content, 'utf-8');
 
     console.log(`Generated correct type definitions at ${esDtsPath}`);
