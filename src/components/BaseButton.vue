@@ -1,33 +1,37 @@
 <template>
-<div :class="`${propsClass}__wrapper`">
-  <label v-if="propsLabel"
-         :class="`${propsClass}__label`">
-    {{ propsLabel }}
-  </label>
-  <button :class="`${propsClass}`"
-          :disabled="disabled"
+<div :class="`${buttonSettings.label}__wrapper`">
+  <div v-if="buttonSettings.label"
+       :class="`${buttonSettings.class}__label`">
+    {{ buttonSettings.label }}
+  </div>
+  <button :class="`${buttonSettings.class}`"
+          :disabled="buttonSettings.disabled"
+          :type="'button'"
           @click="$emit('clicked')">
     <slot></slot>
   </button>
 </div>
 </template>
 <script lang='ts'>
-import { defineComponent } from 'vue';
+
+import { defineComponent, type PropType } from 'vue';
+
+interface IButtonSettings {
+  class: string,
+  label?: string,
+  disabled: boolean
+}
 
 export default defineComponent({
   components: {},
   emits: ['clicked'],
   props: {
-    propsClass: {
-      type: String,
-      default: 'button'
-    },
-    propsLabel: {
-      type: String,
-    },
-    disabled: {
-      type: Boolean,
-      default: false
+    buttonSettings: {
+      type: Object as PropType<IButtonSettings>,
+      default: {
+        class: 'button',
+        disabled: false
+      }
     }
   }
 });
