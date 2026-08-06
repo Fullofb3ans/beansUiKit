@@ -90,7 +90,8 @@ export default defineComponent({
 
         watch(() => props.buttonSettings.value, (newVal) => {
             if (newVal)
-                selectValue.value = String(newVal);
+                selectValue.value = String(newVal)
+            else selectValue.value = ""
         }, { immediate: true })
 
         const valueChanged = () => {
