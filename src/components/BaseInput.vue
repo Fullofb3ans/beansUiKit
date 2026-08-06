@@ -53,14 +53,26 @@ export default defineComponent({
     setup(props, { emit }) {
         const inputValue = ref<string | number>();
 
+        const checkMinMax = (valToCompare: number, type: 'min' | 'max') => {
+            if (props.inputSettings[type] || Number(props.inputSettings[type])) {
+                switch (true) {
+                    case type == 'min' && valToCompare < Number(props.inputSettings.min):
+                        inputValue.value = props.inputSettings.min;
+                        break;
+                    case type == 'max' && valToCompare > Number(props.inputSettings.min):
+                        inputValue.value = props.inputSettings.max;
+                        break;
+                    default:
+                        inputValue.value = valToCompare;
+                        break;
+                }
+            }
+        }
+
         watch(() => inputValue.value, (newVal) => {
-            if (newVal) {
-                if (props.inputSettings.min && (Number(newVal) < props.inputSettings.min)) {
-                    inputValue.value = props.inputSettings.min
-                }
-                else if (props.inputSettings.max && (Number(newVal) > props.inputSettings.max)) {
-                    inputValue.value = props.inputSettings.max
-                }
+            const numericVal = Number(newVal);
+            if (typeof numericVal == 'number') {
+                (['min', 'max'] as const).forEach((type) => checkMinMax(numericVal, type))
             }
             emit('valueChanged', inputValue.value, props.inputSettings.name)
         }, { immediate: true })
