@@ -1,7 +1,7 @@
 <template>
 <div :class="`${inputSettings.class}__wrapper`">
     <label v-if="inputSettings.label"
-           :class="`${inputSettings.label}__label`"
+           :class="`${inputSettings.class}__label`"
            :for="inputSettings.name">
         {{ inputSettings.label }}
     </label>

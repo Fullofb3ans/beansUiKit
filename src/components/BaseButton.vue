@@ -17,9 +17,9 @@
 import { defineComponent, type PropType } from 'vue';
 
 interface IButtonSettings {
-  class: string,
+  class?: string,
   label?: string,
-  disabled: boolean
+  disabled?: boolean
 }
 
 export default defineComponent({

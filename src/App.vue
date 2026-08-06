@@ -6,8 +6,7 @@
         <template v-slot:input-icon></template>
     </BaseInput>
 
-    <BaseButton :propsLabel="'label'"
-                :propsClass="'button'"
+    <BaseButton :buttonSettings="buttonSettings"
                 @clicked="console.log('clicked')">
         testTitle
     </BaseButton>
@@ -67,6 +66,7 @@ export default defineComponent({
             disabled: false,
             placeholder: 'Выберите значение',
             id: 'baseSelect',
+            options: ['test1', 'test2', 'test3']
         }
 
         const inputSettings = {
@@ -85,10 +85,16 @@ export default defineComponent({
             disabled: false
         }
 
+        const buttonSettings = {
+            label: "testLabel",
+            class: "button"
+        }
+
         return {
             inputSettings,
             selectSettings,
-            textareaSettings
+            textareaSettings,
+            buttonSettings
         }
     }
 });
