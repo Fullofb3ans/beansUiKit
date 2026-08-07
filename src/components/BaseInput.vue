@@ -59,7 +59,7 @@ export default defineComponent({
                     case type == 'min' && valToCompare < Number(props.inputSettings.min):
                         inputValue.value = props.inputSettings.min;
                         break;
-                    case type == 'max' && valToCompare > Number(props.inputSettings.min):
+                    case type == 'max' && valToCompare > Number(props.inputSettings.max):
                         inputValue.value = props.inputSettings.max;
                         break;
                     default:
