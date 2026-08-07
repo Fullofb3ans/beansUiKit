@@ -1,57 +1,50 @@
 <template>
-<div :class="`${propsClass}__wrapper`">
-    <label v-if="propsLabel"
-           :class="`${propsClass}__label`"
-           :for="propsClass">
-        {{ propsLabel }}
+<div :class="`${textareaSettings.class}__wrapper`">
+    <label v-if="textareaSettings.label"
+           :class="`${textareaSettings.label}__label`"
+           :for="textareaSettings.class">
+        {{ textareaSettings.label }}
     </label>
-    <textarea :class="propsClass"
-              :id="propsClass"
-              :placeholder="propsPlaceholder"
-              :disabled="disabled"
+    <textarea :class="textareaSettings.class"
+              :id="textareaSettings.class"
+              :placeholder="textareaSettings.placeholder"
+              :disabled="textareaSettings.disabled"
               v-model="inputValue" />
 </div>
 </template>
 <script lang='ts'>
-import { defineComponent, ref, watch } from 'vue';
+import { defineComponent, ref, watch, type PropType } from 'vue';
+
+interface ITextareaSettings {
+    class?: string,
+    label: string,
+    value?: string | number,
+    type?: string,
+    placeholder?: string,
+    name?: string,
+    disabled?: boolean
+}
 
 export default defineComponent({
     components: {},
     emits: ['valueChanged'],
     props: {
-        propsClass: {
-            type: String,
-            default: 'input'
-        },
-        propsLabel: {
-            type: String,
-        },
-        propsValue: {
-            type: [String, Number],
-            default: null
-        },
-        propsType: {
-            type: String,
-            default: 'text'
-        },
-        propsPlaceholder: {
-            type: String,
-            default: ''
-        },
-        propsName: {
-            type: String,
-            default: ''
-        },
-        disabled: {
-            type: Boolean,
-            default: false
-        },
+        textareaSettings: {
+            type: Object as PropType<ITextareaSettings>,
+            default: {
+                class: 'textarea',
+                value: '',
+                placeholder: '',
+                name: '',
+                disabled: false
+            }
+        }
     },
     setup(props, { emit }) {
-        const inputValue = ref(props.propsValue);
+        const inputValue = ref(props.textareaSettings.value);
 
         watch(() => inputValue.value, () => {
-            emit('valueChanged', inputValue.value, props.propsName)
+            emit('valueChanged', inputValue.value, props.textareaSettings.name)
         }, { immediate: true })
 
         return {

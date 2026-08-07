@@ -1,83 +1,85 @@
 <template>
-<div :class="`${propsClass}__wrapper`">
-    <label v-if="propsLabel"
-           :class="`${propsClass}__label`"
-           :for="propsName">
-        {{ propsLabel }}
+<div :class="`${inputSettings.class}__wrapper`">
+    <label v-if="inputSettings.label"
+           :class="`${inputSettings.class}__label`"
+           :for="inputSettings.name">
+        {{ inputSettings.label }}
     </label>
-    <input :class="propsClass"
-           :id="propsName"
-           :type="propsType"
-           :placeholder="propsPlaceholder"
-           :min="min"
-           :max="max"
-           :disabled="disabled"
+    <input :class="inputSettings.class"
+           :id="inputSettings.name"
+           :type="inputSettings.type"
+           :placeholder="inputSettings.placeholder"
+           :min="inputSettings.min"
+           :max="inputSettings.max"
+           :disabled="inputSettings.disabled"
            v-model="inputValue" />
     <div v-if="$slots['input-icon']"
-         :class="`${propsClass}__icon__wrapper`">
+         :class="`${inputSettings.class}__icon__wrapper`">
         <slot name="input-icon"></slot>
     </div>
 </div>
 </template>
+
 <script lang='ts'>
-import { defineComponent, ref, watch } from 'vue';
+import { defineComponent, ref, watch, type PropType } from 'vue';
+interface IBaseInputProps {
+    class?: string,
+    label?: string,
+    value?: string | number,
+    type?: string,
+    placeholder?: string,
+    name?: string
+    min?: number,
+    max?: number,
+    disabled?: boolean
+}
 
 export default defineComponent({
     components: {},
     emits: ['valueChanged'],
     props: {
-        propsClass: {
-            type: String,
-            default: 'input'
+        inputSettings: {
+            type: Object as PropType<IBaseInputProps>,
+            default: {
+                class: 'input',
+                value: null,
+                type: 'text',
+                placeholder: '',
+                name: '',
+                disabled: false
+            }
         },
-        propsLabel: {
-            type: String,
-        },
-        propsValue: {
-            type: [String, Number],
-            default: null
-        },
-        propsType: {
-            type: String,
-            default: 'text'
-        },
-        propsPlaceholder: {
-            type: String,
-            default: ''
-        },
-        propsName: {
-            type: String,
-            default: ''
-        },
-        min: {
-            type: Number
-        },
-        max: {
-            type: Number
-        },
-        disabled: {
-            type: Boolean,
-            default: false
-        }
     },
     setup(props, { emit }) {
         const inputValue = ref<string | number>();
 
-        watch(() => inputValue.value, () => {
-            if (inputValue.value) {
-                if (props.min && (Number(inputValue.value) < props.min)) {
-                    inputValue.value = props.min
-                }
-                else if (props.max && (Number(inputValue.value) > props.max)) {
-                    inputValue.value = props.max
+        const checkMinMax = (valToCompare: number, type: 'min' | 'max') => {
+            if (props.inputSettings[type] || Number(props.inputSettings[type])) {
+                switch (true) {
+                    case type == 'min' && valToCompare < Number(props.inputSettings.min):
+                        inputValue.value = props.inputSettings.min;
+                        break;
+                    case type == 'max' && valToCompare > Number(props.inputSettings.max):
+                        inputValue.value = props.inputSettings.max;
+                        break;
+                    default:
+                        inputValue.value = valToCompare;
+                        break;
                 }
             }
-            emit('valueChanged', inputValue.value, props.propsName)
+        }
+
+        watch(() => inputValue.value, (newVal) => {
+            const numericVal = Number(newVal);
+            if (typeof numericVal == 'number') {
+                (['min', 'max'] as const).forEach((type) => checkMinMax(numericVal, type))
+            }
+            emit('valueChanged', inputValue.value, props.inputSettings.name)
         }, { immediate: true })
 
-        watch(() => props.propsValue, () => {
-            if (inputValue.value !== props.propsValue)
-                inputValue.value = props.propsValue
+        watch(() => props.inputSettings.value, () => {
+            if (inputValue.value !== props.inputSettings.value)
+                inputValue.value = props.inputSettings.value
         }, { immediate: true })
 
         return {
