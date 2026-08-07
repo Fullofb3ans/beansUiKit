@@ -19,24 +19,25 @@
     </BaseSelect>
 
     <BaseTextarea :textareaSettings="textareaSettings"
-                  @valueChanged="(value) => console.log(value)">
-        <!---------------------------------------------------------------------->
-        <BaseCheckbox :propsClass="'checkbox'"
-                      :propsLabel="'label'"
-                      :propsValue="'1'"
-                      :propsStatus="true"
-                      @valueChanged="(value, res) => console.log(value, res)" />
+                  @valueChanged="(value) => console.log(value)" />
 
-        <BaseRadio v-for="item in [1, 2, 3]"
-                   :key="item + 'r'"
-                   :propsName="'testRadio'"
-                   :propsClass="'radio'"
-                   :propsLabel="'label' + item"
-                   :propsValue="item"
-                   @valueChanged="(value, res) => console.log(value, res)" />
+    <!---------------------------------------------------------------------->
+    <BaseCheckbox :propsClass="'checkbox'"
+                  :propsLabel="'label'"
+                  :propsValue="'1'"
+                  :propsStatus="true"
+                  @valueChanged="(value, res) => console.log(value, res)" />
+
+    <BaseRadio v-for="item in [1, 2, 3]"
+               :key="item + 'r'"
+               :propsName="'testRadio'"
+               :propsClass="'radio'"
+               :propsLabel="'label' + item"
+               :propsValue="item"
+               @valueChanged="(value, res) => console.log(value, res)" />
 
 
-    </BaseTextarea>
+
 </div>
 </template>
 <script lang="ts">
