@@ -35,11 +35,9 @@
                :propsLabel="'label' + item"
                :propsValue="item"
                @valueChanged="(value, res) => console.log(value, res)" />
-
-
-
 </div>
 </template>
+
 <script lang="ts">
 import BaseButton from './components/BaseButton.vue';
 import BaseCheckbox from './components/BaseCheckbox.vue';
