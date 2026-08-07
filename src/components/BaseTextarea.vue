@@ -17,7 +17,7 @@ import { defineComponent, ref, watch, type PropType } from 'vue';
 
 interface ITextareaSettings {
     class?: string,
-    label: string,
+    label?: string,
     value?: string | number,
     type?: string,
     placeholder?: string,

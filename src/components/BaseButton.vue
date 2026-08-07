@@ -1,5 +1,5 @@
 <template>
-<div :class="`${buttonSettings.label}__wrapper`">
+<div :class="`${buttonSettings.class}__wrapper`">
   <div v-if="buttonSettings.label"
        :class="`${buttonSettings.class}__label`">
     {{ buttonSettings.label }}
