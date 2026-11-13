@@ -20,4 +20,4 @@ async function fixDts() {
   }
 }
 
-fixDts();
+await fixDts();
