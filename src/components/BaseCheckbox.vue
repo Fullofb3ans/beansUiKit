@@ -14,7 +14,7 @@ interface IBaseCheckboxProps {
 	label: string;
 	value: boolean;
 	name: string;
-	disabled: boolean;
+	disabled?: boolean;
 }
 
 export default defineComponent({
