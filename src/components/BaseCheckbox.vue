@@ -32,17 +32,21 @@ export default defineComponent({
 	},
 	setup(props, { emit }) {
 		const inputValue = ref();
-		onMounted(() => {
-			if (props.propsStatus) {
-				inputValue.value = props.propsValue;
-			}
-		});
+
+		watch(
+			() => props.propsStatus,
+			() => {
+				if (props.propsStatus) {
+					inputValue.value = props.propsValue;
+				}
+			},
+			{ immediate: true },
+		);
 
 		watch(
 			() => inputValue.value,
-			() => {
-				(emit('valueChanged', props.propsValue, inputValue.value), { immediate: true });
-			},
+			() => emit('valueChanged', props.propsValue, inputValue.value),
+			{ immediate: true },
 		);
 
 		return {
