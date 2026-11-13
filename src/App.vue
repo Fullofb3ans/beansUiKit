@@ -15,8 +15,8 @@
 
 		<BaseTextarea :textareaSettings="textareaSettings" @valueChanged="(value) => console.log(value)" />
 
+		<BaseCheckbox :checkboxProps="{ class: 'checkbox-class', name: 'test', label: 'label', value: false }" @valueChanged="(value, res) => console.log(value, res)" />
 		<!---------------------------------------------------------------------->
-		<BaseCheckbox propsName="test" :propsClass="'checkbox'" :propsLabel="'label'" :propsValue="false" :propsStatus="true" @valueChanged="(value, res) => console.log(value, res)" />
 
 		<BaseRadio v-for="item in [1, 2, 3]" :key="item + 'r'" :propsName="'testRadio'" :propsClass="'radio'" :propsLabel="'label' + item" :propsValue="item" @valueChanged="(value, res) => console.log(value, res)" />
 	</div>
