@@ -1,14 +1,14 @@
 <template>
 	<div :class="`${propsClass}__wrapper`">
-		<label v-if="propsLabel" :class="`${propsClass}__wrapper`" :for="propsClass">
+		<label v-if="propsLabel" :class="`${propsClass}__wrapper`" :for="propsName">
 			{{ propsLabel }}
 		</label>
-		<input :class="propsClass" :id="propsClass" type="checkbox" :checked="propsStatus" :value="propsValue" v-model="inputValue" />
+		<input :class="propsClass" :id="propsName" type="checkbox" v-model="inputValue" />
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue';
+import { defineComponent, computed } from 'vue';
 
 export default defineComponent({
 	components: {},
@@ -22,32 +22,16 @@ export default defineComponent({
 			type: String,
 		},
 		propsValue: {
-			type: [String, Number],
-			default: null,
-		},
-		propsStatus: {
 			type: Boolean,
 			default: false,
 		},
+		propsName: {
+			type: String,
+			required: true,
+		},
 	},
 	setup(props, { emit }) {
-		const inputValue = ref();
-
-		watch(
-			() => props.propsStatus,
-			() => {
-				if (props.propsStatus) {
-					inputValue.value = props.propsValue;
-				}
-			},
-			{ immediate: true },
-		);
-
-		watch(
-			() => inputValue.value,
-			() => emit('valueChanged', props.propsValue, inputValue.value),
-			{ immediate: true },
-		);
+		const inputValue = computed({ get: () => props.propsValue, set: (value: boolean) => emit('valueChanged', props.propsName, value) });
 
 		return {
 			inputValue,
