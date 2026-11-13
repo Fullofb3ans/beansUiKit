@@ -3,7 +3,7 @@
 		<label v-if="checkboxProps.label" :class="`${checkboxProps.class}__wrapper`" :for="checkboxProps.name">
 			{{ checkboxProps.label }}
 		</label>
-		<input :class="checkboxProps.class" :id="checkboxProps.name" type="checkbox" v-model="inputValue" />
+		<input :class="checkboxProps.class" :id="checkboxProps.name" type="checkbox" v-model="inputValue" :disabled="checkboxProps.disabled" />
 	</div>
 </template>
 
@@ -14,6 +14,7 @@ interface IBaseCheckboxProps {
 	label: string;
 	value: boolean;
 	name: string;
+	disabled: boolean;
 }
 
 export default defineComponent({
@@ -27,6 +28,7 @@ export default defineComponent({
 				label: 'checkboxLabel',
 				value: false,
 				name: 'name',
+				disabled: false,
 			},
 		},
 	},
